@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Bosta Technical Assessment</string>
+    <string name="exit_choose_the_delivery_area">Exit choose the delivery area selection screen</string>
+    <string name="choose_the_delivery_area">Choose the Delivery Area</string>
+    <string name="city_area">City/Area</string>
+    <string name="search_icon">Search icon</string>
+    <string name="uncovered">Uncovered</string>
+    <string name="show_city_districts">Show city districts</string>
 </resources>

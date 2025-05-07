@@ -1,4 +1,4 @@
-package com.example.bostatechnicalassessment.ui.theme
+package com.example.bostatechnicalassessment.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
