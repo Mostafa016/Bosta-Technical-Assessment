@@ -20,7 +20,12 @@ import com.example.bostatechnicalassessment.R
 import com.example.bostatechnicalassessment.presentation.theme.ROUNDED_CORNER_DIMS
 
 @Composable
-fun SearchBar(modifier: Modifier = Modifier, text: String, onValueChange: (String) -> Unit) {
+fun SearchBar(
+    modifier: Modifier = Modifier,
+    text: String,
+    onValueChange: (String) -> Unit,
+    onSearchClicked: () -> Unit
+) {
     OutlinedTextField(
         text,
         modifier = modifier,
@@ -28,7 +33,7 @@ fun SearchBar(modifier: Modifier = Modifier, text: String, onValueChange: (Strin
         onValueChange = onValueChange,
         placeholder = { Text(stringResource(R.string.city_area)) },
         trailingIcon = {
-            IconButton(onClick = {/*TODO: Add same as IME action*/ }) {
+            IconButton(onClick = onSearchClicked) {
                 Icon(Icons.Sharp.Search, stringResource(R.string.search_icon))
             }
         },
@@ -36,8 +41,9 @@ fun SearchBar(modifier: Modifier = Modifier, text: String, onValueChange: (Strin
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Search,
         ),
-        keyboardActions = KeyboardActions(onSearch = {/*TODO: Add same as pressing search icon*/ }),
-        singleLine = true,
+        keyboardActions = KeyboardActions(onSearch = { onSearchClicked() }),
+        singleLine = false,
+        maxLines = 2,
     )
 }
 
@@ -45,6 +51,10 @@ fun SearchBar(modifier: Modifier = Modifier, text: String, onValueChange: (Strin
 @Composable
 fun SearchBarPreview() {
     MaterialTheme {
-        SearchBar(text = stringResource(R.string.city_area), onValueChange = {})
+        SearchBar(
+            text = stringResource(R.string.city_area),
+            onValueChange = {},
+            onSearchClicked = {},
+        )
     }
 }

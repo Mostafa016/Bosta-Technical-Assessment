@@ -8,39 +8,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.bostatechnicalassessment.domain.model.CityModel
 
-// TODO: Toggle list for pickup and drop off (It's choose the delivery area
-//  , it's drop off not pickup)
 @Composable
-fun CityList(modifier: Modifier = Modifier, cities: List<CityModel>) {
+fun CityList(
+    modifier: Modifier = Modifier,
+    cities: List<CityModel>,
+    cityDistrictsVisibility: Map<String, Boolean>,
+    onToggleCityDistrictsVisibility: (String) -> Unit,
+) {
     LazyColumn(modifier = modifier) {
         itemsIndexed(cities, key = { _, item -> item.cityId }) { index, city ->
-            // TODO: Change stuff for viewmodel
-            CityListItem(Modifier.fillMaxWidth(), cityModel = city, isExpanded = (index % 2 == 0))
-            // TODO: Replace this when implementing API
-            if (index < cities.lastIndex && (index % 2 != 0))
+            CityListItem(
+                Modifier.fillMaxWidth(),
+                cityModel = city,
+                isExpanded = cityDistrictsVisibility[city.cityId]!!,
+                onToggleCityDistrictsVisibility = onToggleCityDistrictsVisibility
+            )
+            if (index < cities.lastIndex && !cityDistrictsVisibility[city.cityId]!!)
                 HorizontalDivider(thickness = 0.5.dp, color = Color.LightGray)
         }
     }
 }
 
 
-data class CityModel(
-    val cityId: String,
-    val cityName: String,
-    val cityOtherName: String,
-    val cityCode: String,
-    val districts: List<DistrictModel>
-)
-
-data class DistrictModel(
-    val zoneId: String,
-    val zoneName: String,
-    val zoneOtherName: String,
-    val districtId: String,
-    val districtName: String,
-    val districtOtherName: String,
-    val pickupAvailability: Boolean,
-    val dropOffAvailability: Boolean,
-    val coverage: String
-)

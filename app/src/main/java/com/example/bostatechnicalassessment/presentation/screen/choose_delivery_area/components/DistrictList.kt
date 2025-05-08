@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.bostatechnicalassessment.domain.model.DistrictModel
 import com.example.bostatechnicalassessment.presentation.theme.LIST_ITEM_VERTICAL_SPACE
 import com.example.bostatechnicalassessment.presentation.theme.LIST_PADDING
 
@@ -41,9 +42,7 @@ fun DistrictListPreview() {
                     districtId = "zoJP71_5Ca1",
                     districtName = "Abu Yousef",
                     districtOtherName = "ابو يوسف",
-                    pickupAvailability = true,
                     dropOffAvailability = true,
-                    coverage = "BOSTA"
                 ),
                 DistrictModel(
                     zoneId = "alex_sm",
@@ -52,9 +51,7 @@ fun DistrictListPreview() {
                     districtId = "alex_sm_id",
                     districtName = "Smoha",
                     districtOtherName = "سموحة",
-                    pickupAvailability = true,
                     dropOffAvailability = true,
-                    coverage = "BOSTA"
                 ),
                 DistrictModel(
                     zoneId = "9mih4NXL1GF",
@@ -63,9 +60,7 @@ fun DistrictListPreview() {
                     districtId = "zoJP71_5Ca1",
                     districtName = "Abu Yousef",
                     districtOtherName = "ابو يوسف",
-                    pickupAvailability = true,
                     dropOffAvailability = true,
-                    coverage = "BOSTA"
                 ),
                 DistrictModel(
                     zoneId = "alex_sm",
@@ -74,9 +69,7 @@ fun DistrictListPreview() {
                     districtId = "alex_sm_id",
                     districtName = "Smoha",
                     districtOtherName = "سموحة",
-                    pickupAvailability = true,
                     dropOffAvailability = true,
-                    coverage = "BOSTA"
                 )
             )
         )

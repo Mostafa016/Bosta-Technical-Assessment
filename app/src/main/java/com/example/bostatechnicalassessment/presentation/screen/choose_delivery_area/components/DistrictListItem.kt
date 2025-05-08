@@ -18,7 +18,6 @@ import com.example.bostatechnicalassessment.presentation.theme.LABEL_PADDING
 import com.example.bostatechnicalassessment.presentation.theme.LIST_ITEM_PADDING
 import com.example.bostatechnicalassessment.presentation.theme.ROUNDED_CORNER_DIMS
 
-// TODO: Pass zoneOtherName and districtOtherName when locale is arabic
 @Composable
 fun DistrictListItem(
     modifier: Modifier = Modifier,
@@ -45,7 +44,7 @@ fun DistrictListItem(
 @Composable
 private fun UncoveredLabel(modifier: Modifier = Modifier) {
     Text(
-        modifier = Modifier
+        modifier = modifier
             .background(Color.White, RoundedCornerShape(ROUNDED_CORNER_DIMS))
             .padding(LABEL_PADDING),
         text = stringResource(R.string.uncovered),

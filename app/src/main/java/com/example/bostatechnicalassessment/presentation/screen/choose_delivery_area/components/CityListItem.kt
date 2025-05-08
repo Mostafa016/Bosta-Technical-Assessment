@@ -20,14 +20,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bostatechnicalassessment.R
+import com.example.bostatechnicalassessment.domain.model.CityModel
+import com.example.bostatechnicalassessment.domain.model.DistrictModel
 import com.example.bostatechnicalassessment.presentation.theme.LIST_ITEM_PADDING
 
-// TODO: Pass cityOtherName when locale is arabic
 @Composable
 fun CityListItem(
     modifier: Modifier = Modifier,
     cityModel: CityModel,
     isExpanded: Boolean,
+    onToggleCityDistrictsVisibility: (String) -> Unit,
 ) {
     Row(
         modifier = modifier.padding(LIST_ITEM_PADDING),
@@ -38,7 +40,9 @@ fun CityListItem(
             cityModel.cityName,
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
         )
-        ExpandDistrictListIconButton(isExpanded = isExpanded)
+        ExpandDistrictListIconButton(
+            isExpanded = isExpanded,
+            onToggleCityDistrictsVisibility = { onToggleCityDistrictsVisibility(cityModel.cityId) })
     }
     if (isExpanded) {
         DistrictList(
@@ -51,9 +55,14 @@ fun CityListItem(
 }
 
 @Composable
-private fun ExpandDistrictListIconButton(modifier: Modifier = Modifier, isExpanded: Boolean) {
+private fun ExpandDistrictListIconButton(
+    modifier: Modifier = Modifier,
+    isExpanded: Boolean,
+    onToggleCityDistrictsVisibility: () -> Unit,
+) {
     IconButton(
-        modifier = modifier, onClick = {/* TODO: Implement it */ }) {
+        modifier = modifier, onClick = onToggleCityDistrictsVisibility
+    ) {
         Icon(
             if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
             contentDescription = stringResource(R.string.show_city_districts),
@@ -73,7 +82,6 @@ fun CityListItemCollapsedPreview() {
                 cityName = "Sample City",
                 cityId = "1",
                 cityOtherName = "Sample City",
-                cityCode = "124",
                 districts = listOf(
                     DistrictModel(
                         zoneId = "9mih4NXL1GF",
@@ -82,9 +90,7 @@ fun CityListItemCollapsedPreview() {
                         districtId = "zoJP71_5Ca1",
                         districtName = "Abu Yousef",
                         districtOtherName = "ابو يوسف",
-                        pickupAvailability = true,
                         dropOffAvailability = true,
-                        coverage = "BOSTA"
                     ),
                     DistrictModel(
                         zoneId = "alex_sm",
@@ -93,13 +99,13 @@ fun CityListItemCollapsedPreview() {
                         districtId = "alex_sm_id",
                         districtName = "Smoha",
                         districtOtherName = "سموحة",
-                        pickupAvailability = true,
                         dropOffAvailability = true,
-                        coverage = "BOSTA"
                     )
-                )
+                ),
+                dropOffAvailability = true
             ),
-            isExpanded = false
+            isExpanded = false,
+            onToggleCityDistrictsVisibility = {},
         )
     }
 }
@@ -113,7 +119,6 @@ fun CityListItemExpandedPreview() {
                 cityName = "Sample City",
                 cityId = "2",
                 cityOtherName = "Sample City",
-                cityCode = "125",
                 districts = listOf(
                     DistrictModel(
                         zoneId = "9mih4NXL1GF",
@@ -122,9 +127,7 @@ fun CityListItemExpandedPreview() {
                         districtId = "zoJP71_5Ca1",
                         districtName = "Abu Yousef",
                         districtOtherName = "ابو يوسف",
-                        pickupAvailability = true,
                         dropOffAvailability = true,
-                        coverage = "BOSTA"
                     ),
                     DistrictModel(
                         zoneId = "alex_sm",
@@ -133,13 +136,13 @@ fun CityListItemExpandedPreview() {
                         districtId = "alex_sm_id",
                         districtName = "Smoha",
                         districtOtherName = "سموحة",
-                        pickupAvailability = true,
                         dropOffAvailability = true,
-                        coverage = "BOSTA"
                     )
-                )
+                ),
+                dropOffAvailability = true
             ),
-            isExpanded = true
+            isExpanded = true,
+            onToggleCityDistrictsVisibility = {},
         )
     }
 }
@@ -148,7 +151,10 @@ fun CityListItemExpandedPreview() {
 @Composable
 fun ExpandDistrictListIconButtonCollapsedPreview() {
     MaterialTheme { // Wrap in MaterialTheme for proper styling
-        ExpandDistrictListIconButton(isExpanded = false)
+        ExpandDistrictListIconButton(
+            isExpanded = false,
+            onToggleCityDistrictsVisibility = {},
+        )
     }
 }
 
@@ -156,6 +162,9 @@ fun ExpandDistrictListIconButtonCollapsedPreview() {
 @Composable
 fun ExpandDistrictListIconButtonExpandedPreview() {
     MaterialTheme { // Wrap in MaterialTheme for proper styling
-        ExpandDistrictListIconButton(isExpanded = true)
+        ExpandDistrictListIconButton(
+            isExpanded = true,
+            onToggleCityDistrictsVisibility = {},
+        )
     }
 }
